@@ -14,6 +14,10 @@
 	<div id="menu">
 		<div><a href="./NtosConfig.php"  class="topbutton topbutton_left">Ntos 설정</a></div>
 		<div class="topbutton topbutton_right">상품수집</div>
+		<?php if($_SESSION['login']){ ?>
+		<div><a href="./LogOut.php"  class="topbutton topbutton_right">로그아웃</a></div>
+		<?php } ?>
+		
 	</div>
 	<div id="content">
 
