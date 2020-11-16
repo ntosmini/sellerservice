@@ -8,17 +8,14 @@ $mode = (empty($_POST['mode']))?"":$_POST['mode'];
 
 if($mode == "update"){
 	$Content = array();
-
-	$Content[] = $_POST['NtosSite'];
-	$Content[] = $_POST['NtosId'];
-	$Content[] = $_POST['NtosKey'];
-
-	$Content = implode("||", $Content);
-
-	$source_file = fopen($NtosFile, "w") or die("Unable to open file!");
-	fwrite($source_file, $Content);
-	fclose($source_file);
-
+	$Content[] = "<?php \n";
+	$Content[] = ' $NtosSite =  "'.$_POST['NtosSite'].'";'."\n";
+	$Content[] = ' $NtosId =  "'.$_POST['NtosId'].'";'."\n";
+	$Content[] = ' $NtosKey =  "'.$_POST['NtosKey'].'";'."\n";
+	$Content = implode('', $Content);
+	$config_file = fopen($ConfigFilePath, "w") or die("Unable to open file!");
+	fwrite($config_file, $Content);
+	fclose($config_file);
 	echo '<script>location.href="./NtosConfig.php";</script>';
 }	//end if
 
